@@ -24,7 +24,7 @@ public class BunParameterizedTest {
                 {"VeryLongNameBusQWERTYUIOPASDFGHJKLZXCVBNMQWERTYUIOPASDFGHJKLZXCVBNM", -10.0f},
                 {"!@#$%^&*()_?<>.,~/`'\"\\ symbols", 15},
                 {"", 0},
-                {null, 0},
+                {"12345", 0},
         };
     }
 
@@ -45,11 +45,7 @@ public class BunParameterizedTest {
         String actualName = bun.name;
         float actualPrice = bun.price;
         String message = MessageFormat.format("Объект Bun() имеет НЕ верные значения полей \"name\"=\"{0}\" или \"price\"={1}", actualName, actualPrice);
-        if (testName == null) {
-            assertTrue(message, (actualName == testName) && (testPrice == actualPrice));
-        } else {
-            assertTrue(message, actualName.equals(testName) && testPrice == actualPrice);
-        }
+        assertTrue(message, actualName.equals(testName) && testPrice == actualPrice);
     }
 
     @Test
