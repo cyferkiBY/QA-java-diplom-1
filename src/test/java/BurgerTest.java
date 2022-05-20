@@ -118,17 +118,31 @@ public class BurgerTest {
     }
 
     @Test
-    public void checkRemoveIngredientWithNotExistIndex() {
+    public void checkRemoveIngredientWithNotExistIndexDoesNotThrowsAnException() {
+        String errorMessage = "";
+        int notExistIndex = 4;
+        burger.addIngredient(INGREDIENT_FIRST);
+
+        try {
+            burger.removeIngredient(notExistIndex);
+        } catch (IndexOutOfBoundsException thrown) {
+            errorMessage = thrown.getMessage();
+        }
+        assertEquals("Произошло исключение IndexOutOfBoundsException", "", errorMessage);
+    }
+
+    @Test
+    public void checkRemoveIngredientWithNotExistIndexHaveExpectedIngredientsList() {
         int notExistIndex = 4;
         List<Ingredient> expectedIngredientsList = Arrays.asList(INGREDIENT_FIRST);
         burger.addIngredient(INGREDIENT_FIRST);
 
         try {
             burger.removeIngredient(notExistIndex);
-            assertEquals("Список ингредиентов не совпал с ожидаемым", expectedIngredientsList, burger.ingredients);
         } catch (IndexOutOfBoundsException thrown) {
-            assertEquals("Произошло исключение IndexOutOfBoundsException", "", thrown.getMessage());
+            String errorMessage = thrown.getMessage();
         }
+        assertEquals("Список ингредиентов не совпал с ожидаемым", expectedIngredientsList, burger.ingredients);
     }
 
     @Test
