@@ -113,9 +113,7 @@ public class BurgerTest {
         burger.addIngredient(INGREDIENT_SECOND);
         burger.addIngredient(INGREDIENT_THIRD);
 
-        for (int i = burger.ingredients.size() - 1; i >= 0; i--) {
-            burger.removeIngredient(i);
-        }
+        removeAllIngredients();
         assertEquals("Список ингредиентов не совпал с ожидаемым", expectedIngredientsList, burger.ingredients);
     }
 
@@ -207,6 +205,12 @@ public class BurgerTest {
             assertEquals(expectedReceipt, actualReceipt);
         } catch (NullPointerException thrown) {
             assertEquals("Произошло исключение NullPointerException", "", thrown.getMessage());
+        }
+    }
+
+    private void removeAllIngredients() {
+        for (int i = burger.ingredients.size() - 1; i >= 0; i--) {
+            burger.removeIngredient(i);
         }
     }
 }
