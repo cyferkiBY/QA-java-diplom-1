@@ -33,7 +33,7 @@ public class IngredientParameterizedTest {
                 {IngredientType.SAUCE, "VeryLongNameBusQWERTYUIOPASDFGHJKLZXCVBNMQWERTYUIOPASDFGHJKLZXCVBNM", -10.0f},
                 {IngredientType.FILLING, "!@#$%^&*()_?<>.,~/`'\"\\ symbols", 15},
                 {IngredientType.SAUCE, "", 0},
-                {IngredientType.FILLING, null, 0},
+                {IngredientType.FILLING, "12345", 0},
                 {null, "", 0},
         };
     }
@@ -51,11 +51,7 @@ public class IngredientParameterizedTest {
         String actualName = ingredient.name;
         float actualPrice = ingredient.price;
         String message = MessageFormat.format("Объект Ingredient() имеет НЕ верные значения полей \"type\"=\"{0}\" или \"name\"=\"{1}\" или \"price\"={2}", actualType, actualName, actualPrice);
-        if (expectedName == null) {
-            assertTrue(message, (actualName == null) && (expectedPrice == actualPrice) && (expectedType == actualType));
-        } else {
-            assertTrue(message, actualName.equals(expectedName) && (expectedPrice == actualPrice) && (expectedType == actualType));
-        }
+        assertTrue(message, actualName.equals(expectedName) && (expectedPrice == actualPrice) && (expectedType == actualType));
     }
 
     @Test
